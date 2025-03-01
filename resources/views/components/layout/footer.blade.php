@@ -1,5 +1,5 @@
 <footer class="bg-extraDark py-10">
-  <div class="max-w-5xl mx-auto p-6">
+  <div class="max-w-5xl mx-auto p-6 lg:px-0">
     <div class="w-full flex justify-between items-center mb-6">
       <h2 class="font-bold text-2xl">WiseJobs</h2>
     </div>

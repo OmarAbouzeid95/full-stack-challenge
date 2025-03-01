@@ -1,7 +1,7 @@
   <nav
     x-data="nav"
     class=
-      "shadow-md fixed top-0 left-0 right-0 bg-primary bg-opacity-95 z-50">
+      "shadow-md fixed top-0 left-0 right-0 bg-light-primary dark:bg-dark-primary z-50">
     <div class="relative flex items-center justify-between h-16 px-6 lg:px-0 max-w-5xl mx-auto">
       <h2 class="font-bold text-2xl">WiseJobs</h2>
       <div class="absolute flex items-center gap-4 z-50 right-4 lg:hidden">
