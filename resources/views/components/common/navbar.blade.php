@@ -4,7 +4,9 @@
       "shadow-md fixed top-0 left-0 right-0 bg-primary bg-opacity-95 z-50">
     <div class="relative flex items-center justify-between h-16 px-6 lg:px-0 max-w-5xl mx-auto">
       <h2 class="font-bold text-2xl">WiseJobs</h2>
-      <div class="absolute z-50 right-4 lg:hidden">
+      <div class="absolute flex items-center gap-4 z-50 right-4 lg:hidden">
+        <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'"><i data-lucide="moon"></i></span>
+        <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'"><i data-lucide="sun"></i></span>
         <div class="menu-icon">
           <input
             class="menu-icon__cheeckbox"
@@ -13,19 +15,21 @@
             @click="toggle"
           />
           <div>
-            <span></span>
-            <span></span>
+            <span class="bg-gray-950 dark:bg-gray-100"></span>
+            <span class="bg-gray-950 dark:bg-gray-100"></span>
           </div>
         </div>
       </div>
-      <div class="hidden lg:flex gap-8">
-          <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme === 'dark'"><i data-lucide="moon"></i></span>
-          <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'"><i data-lucide="sun"></i></span>
-          <a
-          href="#"
-          class="block text-xl text-secondary w-fit hover:text-primary">
-          LINK
-          </a>
+      <div class="hidden lg:flex lg:items-center gap-8">
+          <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'"><i data-lucide="moon"></i></span>
+          <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'"><i data-lucide="sun"></i></span>
+          <template x-for="link in links" :key="link.href">
+            <a 
+            :href="link.href"
+            class="text-lg"
+            x-text="link.name">
+            </a>
+          </template>
       </div>
     </div>
     <!-- menu overlay -->
@@ -36,7 +40,7 @@
       @click="toggle"></div>
     <!-- nav menu -->
     <div
-      class="fixed z-40 inset-y-0 right-0 w-[60%] md:w-[40%] transform bg-gray-100"
+      class="fixed z-40 inset-y-0 right-0 w-[60%] md:w-[40%] transform bg-light-primary dark:bg-dark-primary"
       x-cloak
       x-show="open"
       x-transition:enter="transition ease-out duration-300"
@@ -48,13 +52,13 @@
       >
       <div class="flex items-center justify-between h-16 px-6 shadow-md"></div>
         <!-- menu items -->
-        <nav class="p-6 h-full flex flex-col gap-6">
-          <a
-          href="#"
-          class="block text-xl text-secondary w-fit hover:text-primary"
-          @click="toggle">
-          LINK
-          </a>
-        </nav>
+        <template class="p-6 h-full flex flex-col gap-6" x-for="link in links" :key="link.href">
+            <a 
+              :href="link.href"
+              class="text-lg border-red-500"
+              x-text="link.name">
+            </a>
+          </template>
+        </template>
     </div>
   </nav>
