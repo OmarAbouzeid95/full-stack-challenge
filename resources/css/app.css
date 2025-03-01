@@ -7,12 +7,19 @@
 @source "../**/*.vue";
 
 @theme {
+    ---breakpoint-xs: "0px";
+    ---breakpoint-sm: "375px";
+    ---text-xs: "0.75rem";
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
     --color-light-primary: #fafafa;
-    /* --color-dark-primary: #140b0e; */
+    --color-light-secondary: #f5f5f5;
     --color-dark-primary: #241319;
+    --color-dark-secondary: #331b23;
+    --color-text-light-primary: #030712;
+    --color-text-light-secondary: #364153;
+    --color-text-dark-primary: white;
     --color-text-dark-secondary: #dadada;
     --background-image: linear-gradient(45deg, #228be6 0%, #15aabf 100%);
 }

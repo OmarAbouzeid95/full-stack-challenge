@@ -24,13 +24,13 @@
         :class="$store.global.theme === 'dark' && 'dark'">
       
 
-        @include('components.common.navbar')
+        @include('components.layout.navbar')
         
         <main class="flex-grow mt-20">
             @yield('content')
         </main>
       
-        @include('components.common.footer')
+        @include('components.layout.footer')
 
     </body>
 </html>
