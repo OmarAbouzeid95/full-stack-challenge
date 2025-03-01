@@ -1,24 +1,19 @@
 import "./bootstrap";
 import Alpine from "alpinejs";
-import { createIcons, Menu, ArrowRight, Globe } from "lucide";
+import "./alpine/navbar";
+import "./alpine/store";
+import { createIcons, Menu, Moon, Sun } from "lucide";
 
 // creating lucide-icons
 createIcons({
     icons: {
         Menu,
-        ArrowRight,
-        Globe,
+        Moon,
+        Sun,
     },
 });
 
 window.Alpine = Alpine;
-
-Alpine.data("nav", () => ({
-    open: false,
-    toggle() {
-        this.open = !this.open;
-    },
-}));
 
 Alpine.start();
 

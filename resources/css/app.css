@@ -10,7 +10,12 @@
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+    /* --color-light-primary: #fafafa;
+    --color-dark-primary: #140b0e;
+    --color-text-dark-secondary: #dadada; */
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Hamburger icon */
 .menu-icon {
@@ -100,4 +105,8 @@
 
 .menu-icon {
     -webkit-tap-highlight-color: transparent;
+}
+
+[x-cloak] {
+    display: none !important;
 }

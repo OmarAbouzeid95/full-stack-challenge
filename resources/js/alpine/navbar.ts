@@ -1,8 +1,16 @@
-import Alpine from "../app";
+import Alpine from "alpinejs";
 
-// Alpine.data("nav", () => ({
-//     open: false,
-//     toggle() {
-//         this.open = !this.open;
-//     },
-// }));
+interface NavBarProps {
+    open: boolean;
+    toggle: () => void;
+}
+
+Alpine.data(
+    "nav",
+    (): NavBarProps => ({
+        open: false,
+        toggle() {
+            this.open = !this.open;
+        },
+    })
+);

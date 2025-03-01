@@ -19,78 +19,18 @@
             </style>
         @endif
     </head>
-    <body class="antialiased min-h-screen flex flex-col space-between min-w-screen bg-primary text-primary overflow-x-hidden text-base lg:text-lg">
-      <nav
-      x-data="nav"
-      class=
-        "shadow-md fixed top-0 left-0 right-0 bg-primary bg-opacity-95 z-50">
-      <div class="relative flex items-center justify-between h-16 px-6 lg:px-0 max-w-5xl mx-auto">
-        <h2 class="font-bold text-2xl">WiseJobs</h2>
-        <div class="absolute z-50 right-4 lg:hidden">
-          <div class="menu-icon">
-            <input
-              class="menu-icon__cheeckbox"
-              type="checkbox"
-              :checked="open"
-              @click="toggle"
-            />
-            <div>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-        <div class="hidden lg:flex gap-8">
-            <a
-            href="#"
-            class="block text-xl text-secondary w-fit hover:text-primary">
-            LINK
-            </a>
-        </div>
-      </div>
-      <!-- menu overlay -->
-      <div
-        x-show="open"
-        class="fixed z-10 inset-0 bg-black/30 bg-opacity-50 transition-opacity"
-        @click="toggle"></div>
-      <!-- nav menu -->
-      <div
-        class="fixed z-40 inset-y-0 right-0 w-[60%] md:w-[40%] transform bg-gray-100 transition-transform ease-in-out duration-300"
-        :class="open ? 'translate-x-0' : 'translate-x-full'">
-        <div class="flex items-center justify-between h-16 px-6 shadow-md"></div>
-        <!-- menu items -->
-        <nav class="p-6 h-full flex flex-col gap-6">
-            <a
-            href="#"
-            class="block text-xl text-secondary w-fit hover:text-primary"
-            @click="toggle">
-            LINK
-            </a>
-        </nav>
-      </div>
-      </nav>
+    <body class="antialiased min-h-screen flex flex-col space-between min-w-screen bg-light-primary dark:bg-dark-primary text-gray-950 dark:text-gray-100 overflow-x-hidden text-base lg:text-lg"
+        x-data
+        :class="$store.global.theme === 'dark' && 'dark'">
       
-    <main class="flex-grow mt-20">
-        @yield('content')
-    </main>
+
+        @include('components.common.navbar')
+        
+        <main class="flex-grow mt-20">
+            @yield('content')
+        </main>
       
-    <footer class="bg-extraDark py-10">
-      <div class="max-w-5xl mx-auto p-6">
-        <div class="w-full flex justify-between items-center mb-6">
-          <h2 class="font-bold text-2xl">WiseJobs</h2>
-        </div>
-        <div class="flex flex-col md:flex-row md:gap-6 items-start gap-2 pb-6 border-b border-b-gray-600">
-            <a
-                href="#"
-                class="block text-xl text-secondary w-fit hover:text-primary"
-                @click="toggle">
-                LINK
-            </a>
-        </div>
-        <p class="text-sm pt-8 md:text-center">
-          Copyright © 2025 wisejobs.com
-        </p>
-      </div>
-    </footer>
+        @include('components.common.footer')
+
     </body>
 </html>
