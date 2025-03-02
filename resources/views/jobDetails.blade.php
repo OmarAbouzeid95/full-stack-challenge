@@ -33,8 +33,6 @@
     </template>
 
 
-    
-
     <template x-if="!loading && !error">
       <div>
         <div class="flex items-center gap-6 mb-4">

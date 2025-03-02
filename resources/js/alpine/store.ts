@@ -6,7 +6,8 @@ interface GlobalStore {
     theme: Theme;
     role: Role;
     toggleTheme: () => void;
-    toggleRole: () => void;
+    makeAdmin: () => void;
+    makeUser: () => void;
 }
 
 const globalStore: GlobalStore = {
@@ -16,8 +17,12 @@ const globalStore: GlobalStore = {
         this.theme = this.theme === "dark" ? "light" : "dark";
         localStorage.setItem("theme", this.theme);
     },
-    toggleRole() {
-        this.role = this.role === "admin" ? "user" : "admin";
+    makeAdmin() {
+        this.role = "admin";
+        localStorage.setItem("role", this.role);
+    },
+    makeUser() {
+        this.role = "user";
         localStorage.setItem("role", this.role);
     },
 };

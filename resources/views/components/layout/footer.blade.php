@@ -5,12 +5,14 @@
     </div>
     <div class="flex flex-col md:flex-row md:gap-6 items-start gap-2 pb-6 border-b border-b-gray-600">
       <template x-for="link in links" :key="link.href">
-            <a 
+        <template x-if="!($store.global.role !== 'admin' && link.name === 'Companies')">
+          <a 
             :href="link.href"
             class="text-lg"
             x-text="link.name">
-            </a>
-          </template>
+          </a>
+        </template>
+      </template>
     </div>
     <p class="text-sm pt-8 md:text-center">
       Copyright © 2025 wisejobs.com

@@ -11,10 +11,10 @@
     signIn() {
       this.error = '';
       if(this.username === 'admin' && this.password === 'admin') {
-        this.$store.global.role = 'admin';
-        window.location.href = '/companies'
+        this.$store.global.makeAdmin();
+        window.location.href = '/companies';
       } else if(this.username !== 'admin') {
-        this.$store.global.role = 'user';
+        this.$store.global.makeUser();
         window.location.href = '/jobs';
       } else {
         this.error = 'Incorrect username or password.'; 

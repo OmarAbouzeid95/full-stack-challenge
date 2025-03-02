@@ -24,11 +24,13 @@
       <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'" x-cloak><i data-lucide="moon"></i></span>
         <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'" x-cloak><i data-lucide="sun"></i></span>
           <template x-for="link in links" :key="link.href">
-            <a 
-              :href="link.href"
-              class="text-lg"
-              x-text="link.name">
-            </a>
+            <template x-if="!($store.global.role !== 'admin' && link.name === 'Companies')">
+              <a 
+                :href="link.href"
+                class="text-lg"
+                x-text="link.name">
+              </a>
+            </template>
           </template>
       </div>
     </div>
@@ -53,12 +55,14 @@
       <div class="flex items-center justify-between h-16 px-6 shadow-md">
       </div>
       <div class="p-6 h-full flex flex-col gap-4">
-      <template x-for="link in links" :key="link.href">
-          <a 
-            :href="link.href"
-            class="text-xl"
-            x-text="link.name">
-          </a>
+        <template x-for="link in links" :key="link.href">
+          <template x-if="!($store.global.role !== 'admin' && link.name === 'Companies')">
+            <a 
+              :href="link.href"
+              class="text-lg"
+              x-text="link.name">
+            </a>
+          </template>
         </template>
       </div>
     </div>

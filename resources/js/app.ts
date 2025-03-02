@@ -3,6 +3,7 @@ import Alpine from "alpinejs";
 import "./alpine/navbar";
 import "./alpine/store";
 import "./alpine/jobs";
+import "./alpine/companies";
 import intersect from "@alpinejs/intersect";
 import {
     ArrowUpRight,
