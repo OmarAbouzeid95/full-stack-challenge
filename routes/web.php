@@ -16,3 +16,6 @@ Route::get('/jobs', function () {
     return view('jobs');
 });
 
+Route::get('/jobs/{id}', function () {
+    return view('jobDetails');
+});

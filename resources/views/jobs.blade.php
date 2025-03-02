@@ -25,8 +25,8 @@
               <img 
                 loading="lazy"
                 class="w-12 aspect-square rounded-md"
-                src="https://www.reshot.com/preview-assets/icons/UKWGS8QJBT/pinterest-UKWGS8QJBT.svg"
-                alt="some alt"
+                :src="job.company.logo"
+                :alt="`${job.company.name}'s logo`"
               />
               <div>
                 <h3 x-text="job.title" class="font-bold text-lg"></h3>

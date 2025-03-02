@@ -13,6 +13,17 @@ class JobPostingController extends Controller
         $jobPostings = JobPosting::with('company')->paginate(10);
         return response()->json($jobPostings);
     }
+
+    public function find($id)
+    {
+        $jobPosting = JobPosting::with('company')->find($id);
+        
+        if (!$jobPosting) {
+            return response()->json(['error' => 'Job posting not found'], 404);
+        }
+
+        return response()->json($jobPosting);
+    }
     
     public function filter(Request $request)
     {

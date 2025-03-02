@@ -15,7 +15,7 @@ class CompanyController extends Controller
 
     }
 
-    public function show($id)
+    public function find($id)
     {
         $company = Company::with('jobPostings')->find($id);
         

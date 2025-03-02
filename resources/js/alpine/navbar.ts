@@ -17,10 +17,6 @@ Alpine.data(
         open: false,
         links: [
             {
-                name: "About",
-                href: "/about",
-            },
-            {
                 name: "Jobs",
                 href: "/jobs",
             },
