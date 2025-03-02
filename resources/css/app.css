@@ -7,7 +7,6 @@
 @source "../**/*.vue";
 
 @theme {
-
     ---breakpoint-xs: "0px";
     ---breakpoint-sm: "375px";
     ---text-xs: "0.75rem";
@@ -24,9 +23,6 @@
     --color-text-dark-primary: white;
     --color-text-dark-secondary: #dadada;
     --background-image: linear-gradient(45deg, #228be6 0%, #15aabf 100%);
-    backgroundImage {
-    'blue-gradient': 'linear-gradient(45deg, #228be6 0%, #15aabf 100%)';
-  }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

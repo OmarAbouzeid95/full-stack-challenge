@@ -5,7 +5,7 @@
 
 @section('content')
 
-<section class="px-6 lg:px-0 py-24 max-w-md md:max-w-3xl lg:max-w-5xl mx-auto text-base md:text-lg" x-data="companies">
+<section class="min-h-screen px-6 lg:px-0 py-24 max-w-md md:max-w-3xl lg:max-w-5xl mx-auto text-base md:text-lg" x-data="companies">
 
 
   <h1 class="font-bold text-2xl mb-10">Browse WiseJobs Companies</h1>

@@ -17,6 +17,7 @@ interface JobsData {
     filter: () => void;
     fetchJobs: () => void;
     toggleFilters: () => void;
+    isLoading: () => boolean;
     jobTypes: string[];
     salaries: number[];
     search: string;
@@ -35,15 +36,15 @@ const jobs: JobsData = {
         this.fetchJobs();
     },
     fetchJobs() {
-        // if (this.loading) return;
         this.loading = true;
         axios
             .get(`/api/job-postings?page=${this.page}`)
             .then((res) => {
-                this.jobs = [...this.jobs, res.data.data];
-                console.log("jobs", this.jobs);
+                console.log("res: ", res);
+                this.jobs = [...this.jobs, ...res.data.data];
                 this.page++;
                 this.loading = false;
+                console.log(this);
             })
             .catch((error) => {
                 this.error = error;
@@ -66,6 +67,9 @@ const jobs: JobsData = {
                 this.error = error;
                 this.loading = false;
             });
+    },
+    isLoading() {
+        return this.loading;
     },
     toggleFilters() {
         this.showFilters = !this.showFilters;

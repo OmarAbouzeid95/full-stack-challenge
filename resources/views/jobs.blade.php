@@ -3,7 +3,7 @@
 
 @section('content')
 
-  <section class="px-6 lg:px-0 py-24 max-w-md md:max-w-3xl lg:max-w-5xl mx-auto text-base md:text-lg" x-data="jobs">
+  <section class="min-h-screen px-6 lg:px-0 py-24 max-w-md md:max-w-3xl lg:max-w-5xl mx-auto text-base md:text-lg" x-data="jobs">
       <div class="flex justify-between items-center mb-8">
       <h1 class="font-bold text-2xl">Browse Latest Jobs</h1>
       <div>
@@ -55,40 +55,39 @@
         <h1 class="text-xl text-center">Oops, We couldn't find anything that matches your search.</h1>
       </template>
 
-      <template x-if="loading">
-        <div class="w-full h-full flex items-center justify-center">
-            <i data-lucide="loader-circle" class="block w-14 h-14 text-3xl animate-spin infinite"></i>
-        </div>
-      </template>
 
-      <template x-if="!loading && !error && jobs.length > 0">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <template x-for="job in jobs" :key="job.id" >
-            <a
-              :href="`jobs/${job.id}`"
-              class="flex flex-col px-4 py-6 bg-light-secondary dark:bg-dark-secondary border-gray-50 dark:border-gray-200 rounded-md hover:shadow-md hover:dark:shadow-[#3b1f28] hover:dark:shadow-md transition-all duration-200 max-w-md md:max-w-sm lg:max-w-lg"
-            > 
-              <div class="flex items-center gap-4 mb-4">
-                <img 
-                  class="w-12 aspect-square rounded-md"
-                  :src="job.company.logo"
-                  :alt="`${job.company.name}'s logo`"
-                />
-                <div>
-                  <h3 x-text="job.title" class="font-bold text-lg"></h3>
-                  <h4 x-text="job.company.name" class="text-text-light-secondary dark:text-text-dark-secondary text-sm"></h4>
-                </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <!-- skeleton loaders -->
+        <!-- <template x-show="isLoading" x-for="item in salaries" :key="item">
+          <div class="h-[228px] md:h-[260px] lg:h-[232px] px-4 py-6 bg-gray-200 dark:bg-dark-secondary border-gray-50 dark:border-gray-200 rounded-md hover:shadow-md hover:dark:shadow-[#3b1f28] hover:dark:shadow-md transition-all duration-200 max-w-md md:max-w-sm lg:max-w-lg animate-pulse">
+          </div>
+        </template> -->
+        <!-- actual content -->
+        <template x-show="jobs.length > 0" x-for="job in jobs" :key="job.id" >
+          <a
+            :href="`jobs/${job.id}`"
+            class="flex flex-col px-4 py-6 bg-light-secondary dark:bg-dark-secondary border-gray-50 dark:border-gray-200 rounded-md hover:shadow-md hover:dark:shadow-[#3b1f28] hover:dark:shadow-md transition-all duration-200 max-w-md md:max-w-sm lg:max-w-lg"
+          > 
+            <div class="flex items-center gap-4 mb-4">
+              <img 
+                class="w-12 aspect-square rounded-md"
+                :src="job.company.logo"
+                :alt="`${job.company.name}'s logo`"
+              />
+              <div>
+                <h3 x-text="job.title" class="font-bold text-lg"></h3>
+                <h4 x-text="job.company.name" class="text-text-light-secondary dark:text-text-dark-secondary text-sm"></h4>
               </div>
-              <p x-text="job.description.slice(0,150)" class="mb-2 text-sm"></p>
-              <div class="mt-6 justify-self-end flex items-center gap-4 text-xs sm:text-sm text-text-light-secondary dark:text-text-dark-primary">
-                  <p class="bg-white dark:bg-dark-primary h-fit px-3 py-1 rounded-full">$<span x-text="job.salary"></span></p>
-                  <p x-text="job.location" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
-                  <p x-text="job.type" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
-              </div>
-            </a>
-          </template>
-        </div>
-      </template>
+            </div>
+            <p x-text="job.description.slice(0,150)" class="mb-2 text-sm"></p>
+            <div class="mt-6 justify-self-end flex items-center gap-4 text-xs sm:text-sm text-text-light-secondary dark:text-text-dark-primary">
+                <p class="bg-white dark:bg-dark-primary h-fit px-3 py-1 rounded-full">$<span x-text="job.salary"></span></p>
+                <p x-text="job.location" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
+                <p x-text="job.type" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
+            </div>
+          </a>
+        </template>
+      </div>
 
       <div x-intersect.margin.200px="fetchJobs()" class="hidden"></div>
   </section>

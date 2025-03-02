@@ -6,7 +6,7 @@
 
 @section('content')
 
-<section class="px-6 lg:px-0 py-24 max-w-md md:max-w-3xl mx-auto text-base md:text-lg" x-data="{
+<section class="min-h-screen px-6 lg:px-0 py-24 max-w-md md:max-w-3xl mx-auto text-base md:text-lg" x-data="{
   init() {
     this.loading = true;
     const id = window.location.href.split('/').pop();
@@ -21,13 +21,20 @@
       this.loading = false
     })
   },
-  submitEdit() {
-    window.alert('success')
-    this.editing = false;
-  },
   enableEditing() {
     this.editing = true;
   },
+  displayToast(message) {
+      this.editing = false;
+      this.toastMessage = message;
+      this.showToast = true;
+
+      setTimeout(() => {
+          this.showToast = false;
+      }, 2000);
+  },
+  showToast: false,
+  toastMessage: '',
   loading: false,
   company: {},
   error: undefined,
@@ -53,7 +60,7 @@
           :src="company.logo"
           :alt="`${company.name}'s logo`"
         />
-        <button class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-6 py-2 rounded-full text-white" @click="editing ? submitEdit : enableEditing" x-text="editing ? 'Save' : 'Edit'">
+        <button class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-6 py-2 rounded-full text-white" @click="editing ? displayToast('Company details updated') : enableEditing" x-text="editing ? 'Save' : 'Edit'">
       </button>
       </div>
       <template x-if="!editing">
@@ -100,6 +107,23 @@
         </div>
     </div>
   </template>
+  
+  <div 
+      x-show="showToast"
+      x-cloak
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="transform translate-y-8 opacity-0"
+      x-transition:enter-end="transform translate-y-0 opacity-100"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="transform translate-y-0 opacity-100"
+      x-transition:leave-end="transform translate-y-8 opacity-0"
+      class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50"
+    >
+    <div class="flex items-center">
+      <i data-lucide="circle-check" class="w-5 h-5 text-white mr-2"></i>
+      <span x-text="toastMessage"></span>
+    </div>
+  </div>
 </section>
 
 @endsection()

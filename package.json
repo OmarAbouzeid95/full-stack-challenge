@@ -9,6 +9,8 @@
         "@tailwindcss/vite": "^4.0.0",
         "@types/alpinejs": "^3.13.11",
         "@types/alpinejs__intersect": "^3.13.4",
+        "@types/toastify-js": "^1.12.3",
+        "alpinejs-component": "^1.2.10",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.2.0",

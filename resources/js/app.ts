@@ -5,6 +5,7 @@ import "./alpine/store";
 import "./alpine/jobs";
 import "./alpine/companies";
 import intersect from "@alpinejs/intersect";
+
 import {
     ArrowUpRight,
     createIcons,
@@ -14,6 +15,7 @@ import {
     LoaderCircle,
     Filter,
     FilterX,
+    CircleCheck,
 } from "lucide";
 
 // creating lucide-icons
@@ -26,6 +28,7 @@ createIcons({
         Sun,
         Filter,
         FilterX,
+        CircleCheck,
     },
 });
 
