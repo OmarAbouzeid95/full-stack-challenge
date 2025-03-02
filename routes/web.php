@@ -19,3 +19,7 @@ Route::get('/jobs', function () {
 Route::get('/jobs/{id}', function () {
     return view('jobDetails');
 });
+
+Route::get('/sign-in', function () {
+    return view('signin');
+});

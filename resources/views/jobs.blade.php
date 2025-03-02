@@ -44,7 +44,7 @@
               </select>
             </div>
           </div>
-          <input type="submit" value="Search" class="block mt-6 w-full md:w-[25%] px-4 py-2 text-white rounded-md bg-blue-500 hover:cursor-pointer"/>
+          <input type="submit" value="Search" class="block mt-6 w-full md:w-[25%] px-4 py-2 text-white rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:cursor-pointer"/>
       </form>
 
       <template x-if="error">

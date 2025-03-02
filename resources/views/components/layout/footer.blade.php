@@ -1,4 +1,4 @@
-<footer class="bg-extraDark py-10" x-data="nav">
+<footer class="bg-light-secondary dark:bg-dark-secondary py-10" x-data="nav">
   <div class="max-w-5xl mx-auto p-6 lg:px-0">
     <div class="w-full flex justify-between items-center mb-6">
       <h2 class="font-bold text-2xl">WiseJobs</h2>

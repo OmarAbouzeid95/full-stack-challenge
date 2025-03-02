@@ -52,7 +52,7 @@
           <p class="text-sm" x-text="job.type"></p>
         </div>
         <div class="flex items-center gap-4 my-4">
-          <button class="bg-blue-500 px-6 py-2 rounded-full text-white">
+          <button class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-6 py-2 rounded-full text-white">
             Apply
           </button>
         </div>

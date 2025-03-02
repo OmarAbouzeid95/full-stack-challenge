@@ -5,8 +5,8 @@
     <div class="relative flex items-center justify-between h-16 px-6 lg:px-0 max-w-5xl mx-auto">
       <a class="font-bold text-2xl" href="/">WiseJobs</a>
       <div class="absolute flex items-center gap-4 z-50 right-4 lg:hidden">
-        <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'"><i data-lucide="moon"></i></span>
-        <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'"><i data-lucide="sun"></i></span>
+        <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'" x-cloak><i data-lucide="moon"></i></span>
+        <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'" x-cloak><i data-lucide="sun"></i></span>
         <div class="menu-icon">
           <input
             class="menu-icon__cheeckbox"
@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="hidden lg:flex lg:items-center gap-8">
-          <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'"><i data-lucide="moon"></i></span>
-          <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'"><i data-lucide="sun"></i></span>
+      <span @click="$store.global.toggleTheme()" class="text-gray-950 hover:cursor-pointer" x-show="$store.global.theme !== 'dark'" x-cloak><i data-lucide="moon"></i></span>
+        <span @click="$store.global.toggleTheme()" class="text-gray-100 hover:cursor-pointer" x-show="$store.global.theme === 'dark'" x-cloak><i data-lucide="sun"></i></span>
           <template x-for="link in links" :key="link.href">
             <a 
               :href="link.href"

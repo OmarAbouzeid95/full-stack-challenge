@@ -21,8 +21,12 @@ Alpine.data(
                 href: "/jobs",
             },
             {
-                name: "Dashboard",
-                href: "/dashboard",
+                name: "Companies",
+                href: "/companies",
+            },
+            {
+                name: "Sign In",
+                href: "/sign-in",
             },
         ],
         toggle() {
