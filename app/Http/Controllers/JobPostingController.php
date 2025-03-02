@@ -50,6 +50,6 @@ class JobPostingController extends Controller
         
         $filteredJobPostings = $query->paginate(10);
         
-        return response()->json($filteredJobPostings);
+        return response()->json($query->get());
     }
 }

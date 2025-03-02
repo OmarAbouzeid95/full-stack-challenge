@@ -11,6 +11,8 @@ import {
     Moon,
     Sun,
     LoaderCircle,
+    Filter,
+    FilterX,
 } from "lucide";
 
 // creating lucide-icons
@@ -21,19 +23,10 @@ createIcons({
         LoaderCircle,
         Moon,
         Sun,
+        Filter,
+        FilterX,
     },
 });
-
-Alpine.data("jobPostings", () => ({
-    init() {
-        axios.get("/api/job-postings").then((res) => {
-            this.jobs = res.data.data;
-            this.pageNumber++;
-        });
-    },
-    pageNumber: 1,
-    jobs: [],
-}));
 
 window.Alpine = Alpine;
 
