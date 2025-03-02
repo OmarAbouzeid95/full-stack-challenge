@@ -3,7 +3,7 @@ import Alpine from "alpinejs";
 import "./alpine/navbar";
 import "./alpine/store";
 import "./alpine/jobs";
-import axios from "axios";
+import intersect from "@alpinejs/intersect";
 import {
     ArrowUpRight,
     createIcons,
@@ -28,6 +28,7 @@ createIcons({
     },
 });
 
+Alpine.plugin(intersect);
 window.Alpine = Alpine;
 
 Alpine.start();

@@ -51,13 +51,17 @@
         <h1 class="text-xl text-center">Oops, Something went wrong please try again.</h1>
       </template>
 
+      <template x-if="jobs.length === 0 && !loading">
+        <h1 class="text-xl text-center">Oops, We couldn't find anything that matches your search.</h1>
+      </template>
+
       <template x-if="loading">
         <div class="w-full h-full flex items-center justify-center">
             <i data-lucide="loader-circle" class="block w-14 h-14 text-3xl animate-spin infinite"></i>
         </div>
       </template>
 
-      <template x-if="!loading && !error">
+      <template x-if="!loading && !error && jobs.length > 0">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <template x-for="job in jobs" :key="job.id" >
             <a
@@ -66,7 +70,6 @@
             > 
               <div class="flex items-center gap-4 mb-4">
                 <img 
-                  loading="lazy"
                   class="w-12 aspect-square rounded-md"
                   :src="job.company.logo"
                   :alt="`${job.company.name}'s logo`"
@@ -86,6 +89,8 @@
           </template>
         </div>
       </template>
+
+      <div x-intersect.margin.200px="fetchJobs()" class="hidden"></div>
   </section>
 
 @endsection

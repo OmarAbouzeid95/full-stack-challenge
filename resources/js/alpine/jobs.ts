@@ -12,13 +12,37 @@ interface JobPosting {
     company: Company;
 }
 
-Alpine.data("jobs", () => ({
+interface JobsData {
+    init: () => void;
+    filter: () => void;
+    fetchJobs: () => void;
+    toggleFilters: () => void;
+    jobTypes: string[];
+    salaries: number[];
+    search: string;
+    type: "Hybrid" | "In-person" | "Remote" | "";
+    location: string;
+    showFilters: boolean;
+    salary: number;
+    loading: boolean;
+    error: unknown;
+    page: number;
+    jobs: JobPosting[];
+}
+
+const jobs: JobsData = {
     init() {
+        this.fetchJobs();
+    },
+    fetchJobs() {
+        // if (this.loading) return;
+        this.loading = true;
         axios
-            .get(`/api/job-postings`)
+            .get(`/api/job-postings?page=${this.page}`)
             .then((res) => {
-                this.jobs = res.data.data;
-                this.pageNumber++;
+                this.jobs = [...this.jobs, res.data.data];
+                console.log("jobs", this.jobs);
+                this.page++;
                 this.loading = false;
             })
             .catch((error) => {
@@ -27,35 +51,36 @@ Alpine.data("jobs", () => ({
             });
     },
     filter() {
-        console.log(this.search, this.type, this.salary, this.location);
-        // axios
-        //     .get(
-        //         `api/jobs/filter?search=${this.search}${
-        //             this.type !== "" && `&type=${this.type}`
-        //         }${this.salary && `&salary=${this.salary}`}
-        //     ${this.location !== "" && `&location=${this.location}`}`
-        //     )
-        //     .then((res) => {
-        //         this.jobs = res.data.data;
-        //         this.loading = false;
-        //     })
-        //     .catch((error) => {
-        //         this.error = error;
-        //         this.loading = false;
-        //     });
+        axios
+            .post("api/job-postings/filter", {
+                title: this.search,
+                type: this.type !== "" ? this.type : undefined,
+                salary: this.salary ?? undefined,
+                location: this.location,
+            })
+            .then((res) => {
+                this.jobs = res.data.data;
+                this.loading = false;
+            })
+            .catch((error) => {
+                this.error = error;
+                this.loading = false;
+            });
     },
     toggleFilters() {
         this.showFilters = !this.showFilters;
     },
     jobTypes: ["Remote", "Hybrid", "In-person"],
-    salaries: new Array(10).fill(0).map((_, index) => ++index * 1000),
+    salaries: new Array(10).fill(0).map((_, index) => ++index * 10000),
     showFilters: false,
     search: "",
     type: "",
     salary: 0,
     location: "",
-    loading: true,
+    loading: false,
     error: undefined,
-    pageNumber: 1,
+    page: 1,
     jobs: [],
-}));
+};
+
+Alpine.data("jobs", () => jobs);

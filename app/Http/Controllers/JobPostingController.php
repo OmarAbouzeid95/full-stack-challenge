@@ -26,30 +26,31 @@ class JobPostingController extends Controller
     }
     
     public function filter(Request $request)
-    {
-        $query = JobPosting::query();
-        
-        // filtering logic
-        if ($request->has('name')) {
-            $query->where('title', 'like', '%' . $request->get('name') . '%');
-        }
-        
-        if ($request->has('salary')) {
-            $query->where('salary', '>=', $request->get('salary'));
-        }
-        
-        if ($request->has('company')) {
-            $query->whereHas('company', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->get('company') . '%');
-            });
-        }
-        
-        if ($request->has('type')) {
-            $query->where('type', $request->get('type'));
-        }
-        
-        $filteredJobPostings = $query->paginate(10);
-        
-        return response()->json($query->get());
+{
+    $query = JobPosting::query()->with('company');
+    
+    if ($request->has('title')) {
+        $query->where('title', 'like', '%' . $request->input('title') . '%');
     }
+    
+    if ($request->has('salary')) {
+        $query->where('salary', '>=', $request->input('salary'));
+    }
+    
+    if ($request->has('location')) {
+        $query->where('location', 'like', '%' . $request->input('location') . '%');
+    }
+    
+    if ($request->has('type')) {
+        $query->where('type', $request->input('type'));
+    }
+    
+    
+    $query->orderBy('created_at', 'desc');
+    $filteredJobPostings = $query->paginate($request->input('per_page', 10));
+    $filteredJobPostings->appends($request->all());
+    
+    return response()->json($filteredJobPostings);
+}
+
 }
