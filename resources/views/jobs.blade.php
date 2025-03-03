@@ -47,9 +47,7 @@
           <input type="submit" value="Search" class="block mt-6 w-full md:w-[25%] px-4 py-2 text-white rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:cursor-pointer"/>
       </form>
 
-      <template x-if="error">
-        <h1 class="text-xl text-center">Oops, Something went wrong please try again.</h1>
-      </template>
+      @include('components.common.errorMessage')
 
       <template x-if="jobs.length === 0 && !loading">
         <h1 class="text-xl text-center">Oops, We couldn't find anything that matches your search.</h1>
@@ -63,30 +61,9 @@
           </div>
         </template> -->
         <!-- actual content -->
-        <template x-show="jobs.length > 0" x-for="job in jobs" :key="job.id" >
-          <a
-            :href="`jobs/${job.id}`"
-            class="flex flex-col px-4 py-6 bg-light-secondary dark:bg-dark-secondary border-gray-50 dark:border-gray-200 rounded-md hover:shadow-md hover:dark:shadow-[#3b1f28] hover:dark:shadow-md transition-all duration-200 max-w-md md:max-w-sm lg:max-w-lg"
-          > 
-            <div class="flex items-center gap-4 mb-4">
-              <img 
-                class="w-12 aspect-square rounded-md"
-                :src="job.company.logo"
-                :alt="`${job.company.name}'s logo`"
-              />
-              <div>
-                <h3 x-text="job.title" class="font-bold text-lg"></h3>
-                <h4 x-text="job.company.name" class="text-text-light-secondary dark:text-text-dark-secondary text-sm"></h4>
-              </div>
-            </div>
-            <p x-text="job.description.slice(0,150)" class="mb-2 text-sm"></p>
-            <div class="mt-6 justify-self-end flex items-center gap-4 text-xs sm:text-sm text-text-light-secondary dark:text-text-dark-primary">
-                <p class="bg-white dark:bg-dark-primary h-fit px-3 py-1 rounded-full">$<span x-text="job.salary"></span></p>
-                <p x-text="job.location" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
-                <p x-text="job.type" class="bg-white dark:bg-dark-primary h-fit py-1 px-3 rounded-full"></p>
-            </div>
-          </a>
-        </template>
+          <template x-show="jobs.length > 0" x-for="job in jobs" :key="job.id" >
+            @include('components.cards.jobCard')
+          </template>
       </div>
 
       <div x-intersect.margin.200px="fetchJobs()" class="hidden"></div>

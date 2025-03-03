@@ -16,8 +16,10 @@
         "Noto Color Emoji";
     --color-light-primary: #fafafa;
     --color-light-secondary: #f5f5f5;
+    --color-light-footer: "#f0ebf5";
     --color-dark-primary: #241319;
     --color-dark-secondary: #331b23;
+    --color-dark-footer: "#12090c";
     --color-text-light-primary: #030712;
     --color-text-light-secondary: #364153;
     --color-text-dark-primary: white;
