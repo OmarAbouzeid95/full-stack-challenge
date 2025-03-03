@@ -66,7 +66,7 @@
           </template>
       </div>
 
-      <div x-intersect.margin.200px="fetchJobs()" class="hidden"></div>
+      <div x-intersect:enter="fetchJobs()"></div>
   </section>
 
 @endsection

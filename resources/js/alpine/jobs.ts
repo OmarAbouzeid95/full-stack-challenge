@@ -40,11 +40,9 @@ const jobs: JobsData = {
         axios
             .get(`/api/job-postings?page=${this.page}`)
             .then((res) => {
-                console.log("res: ", res);
                 this.jobs = [...this.jobs, ...res.data.data];
                 this.page++;
                 this.loading = false;
-                console.log(this);
             })
             .catch((error) => {
                 this.error = error;
