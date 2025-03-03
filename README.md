@@ -63,6 +63,13 @@ php artisan serve
 
 ```
 
+# ADMIN USER CREDENTIALS:
+
+```
+username: admin
+password: admin
+```
+
 Voila!
 
 That's it! The application should now be up and running on your local environment.
