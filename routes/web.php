@@ -31,3 +31,7 @@ Route::get('/company/{id}', function () {
 Route::get('/sign-in', function () {
     return view('signin');
 });
+
+Route::fallback(function () {
+    return view('notFound');
+});
