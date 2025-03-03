@@ -17,12 +17,14 @@ interface JobsData {
     filter: () => void;
     fetchJobs: () => void;
     toggleFilters: () => void;
+    clearFilters: () => void;
     isLoading: () => boolean;
     jobTypes: string[];
     salaries: number[];
     search: string;
     type: "Hybrid" | "In-person" | "Remote" | "";
     location: string;
+    filtersApplied: boolean;
     showFilters: boolean;
     salary: number;
     loading: boolean;
@@ -36,6 +38,7 @@ const jobs: JobsData = {
         this.fetchJobs();
     },
     fetchJobs() {
+        if (this.loading || this.filtersApplied) return;
         this.loading = true;
         axios
             .get(`/api/job-postings?page=${this.page}`)
@@ -45,11 +48,13 @@ const jobs: JobsData = {
                 this.loading = false;
             })
             .catch((error) => {
+                console.error("error fetching jobs: ", error);
                 this.error = error;
                 this.loading = false;
             });
     },
     filter() {
+        this.filtersApplied = true;
         axios
             .post("api/job-postings/filter", {
                 title: this.search,
@@ -72,9 +77,21 @@ const jobs: JobsData = {
     toggleFilters() {
         this.showFilters = !this.showFilters;
     },
+    clearFilters() {
+        if (!this.filtersApplied) return;
+        this.search = "";
+        this.type = "";
+        this.salary = 0;
+        this.location = "";
+        this.page = 1;
+        this.filtersApplied = false;
+        this.jobs = [];
+        this.fetchJobs();
+    },
     jobTypes: ["Remote", "Hybrid", "In-person"],
     salaries: new Array(10).fill(0).map((_, index) => ++index * 10000),
     showFilters: false,
+    filtersApplied: false,
     search: "",
     type: "",
     salary: 0,

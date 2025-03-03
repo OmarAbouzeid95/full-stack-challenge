@@ -44,7 +44,11 @@
               </select>
             </div>
           </div>
-          <input type="submit" value="Search" class="block mt-6 w-full md:w-[25%] px-4 py-2 text-white rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:cursor-pointer"/>
+          <div class="md:flex items-center md:gap-6">
+            <input type="submit" value="Search" class="block mt-6 w-full md:w-[25%] px-4 py-2 text-white rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:cursor-pointer"/>
+            <button class="block mt-6 w-full md:w-[25%] text-white px-4 py-2 rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:cursor-pointer" @click="clearFilters">
+  Clear filters</button>
+          </div>
       </form>
 
       @include('components.common.errorMessage')
@@ -66,7 +70,7 @@
           </template>
       </div>
 
-      <div x-intersect:enter="fetchJobs()"></div>
+      <div class="h-72 -mb-72" x-intersect:enter="fetchJobs()" x-intersect:leave="fetchJobs()"></div>
   </section>
 
 @endsection

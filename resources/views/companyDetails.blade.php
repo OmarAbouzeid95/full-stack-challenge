@@ -82,7 +82,7 @@
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <template x-for="job in company.job_postings" :key="job.id" >
             <a
-              :href="`jobs/${job.id}`"
+              :href="`/jobs/${job.id}?edit=true`"
               class="flex flex-col px-4 py-6 bg-light-secondary dark:bg-dark-secondary border-gray-50 dark:border-gray-200 rounded-md hover:shadow-md hover:dark:shadow-[#3b1f28] hover:dark:shadow-md transition-all duration-200 max-w-md md:max-w-sm lg:max-w-lg"
             > 
               <div class="flex items-center gap-4 mb-4">
